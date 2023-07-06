@@ -1,26 +1,36 @@
-# caching_test
+= caching_test
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+This project shows that caching in quarkus is not working if the bean using caching is created via a producer.
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+Running this app is logging `Fetched Data is true` and `Fetched Data is false` alternating on every call.
 
-## Running the application in dev mode
+The expected behavior is that it should log `Fetched Data is true` for 10s and after cache expiration it should log `Fetched Data is false`.
+
+== Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
 
-```shell script
+[source,shell script]
+----
 ./gradlew quarkusDev
-```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+----
 
-## Packaging and running the application
+____
+
+*_NOTE:_* Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+
+____
+
+== Packaging and running the application
 
 The application can be packaged using:
 
-```shell script
+[source,shell script]
+----
 ./gradlew build
-```
+
+----
 
 It produces the `quarkus-run.jar` file in the `build/quarkus-app/` directory.
 Be aware that it’s not an _über-jar_ as the dependencies are copied into the `build/quarkus-app/lib/` directory.
@@ -29,32 +39,35 @@ The application is now runnable using `java -jar build/quarkus-app/quarkus-run.j
 
 If you want to build an _über-jar_, execute the following command:
 
-```shell script
+[source,shell script]
+----
 ./gradlew build -Dquarkus.package.type=uber-jar
-```
+----
 
 The application, packaged as an _über-jar_, is now runnable using `java -jar build/*-runner.jar`.
 
-## Creating a native executable
+== Creating a native executable
 
 You can create a native executable using:
 
-```shell script
+[source,shell script]
+----
 ./gradlew build -Dquarkus.package.type=native
-```
+----
 
 Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
 
-```shell script
+[source,shell script]
+----
 ./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true
-```
+----
 
 You can then execute your native executable with: `./build/caching_test-1.0-SNAPSHOT-runner`
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/gradle-tooling.
 
-## Related Guides
+== Related Guides
 
-- Kotlin ([guide](https://quarkus.io/guides/kotlin)): Write your services in Kotlin
-- Scheduler - tasks ([guide](https://quarkus.io/guides/scheduler)): Schedule jobs and tasks
-- Cache ([guide](https://quarkus.io/guides/cache)): Enable application data caching in CDI beans
+* Kotlin (https://quarkus.io/guides/kotlin[guide]): Write your services in Kotlin
+* Scheduler - tasks (https://quarkus.io/guides/scheduler[guide]): Schedule jobs and tasks
+* Cache (https://quarkus.io/guides/cache[guide]): Enable application data caching in CDI beans
