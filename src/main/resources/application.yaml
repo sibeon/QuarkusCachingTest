@@ -1,0 +1,6 @@
+quarkus:
+  cache:
+    enabled: true
+    caffeine:
+      flaggingCache:
+        expire-after-write: 10S
